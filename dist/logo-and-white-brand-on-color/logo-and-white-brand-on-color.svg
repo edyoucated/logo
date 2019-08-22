@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="165"
+   height="50"
+   id="svg8068"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="logo-and-brand.min.svg">
+  <rect width="120%" height="120%" x="-2" y="-2" fill="#33325e"/>
+  <g
+     id="g8074"
+     style="fill-rule:evenodd">
+    <path
+       d="m 90.117,44.686 c -1.12,2.14 15.538,-8.365 22.052,-10.4 6.514,-2.035 16.498,4.352 23.688,3.982 7.13,-0.57 25.36,-33.92 23.81,-32.63 -1.55,1.29 -14.477,15.226 -24.772,17.17 -10.295,1.944 -20.517,-8.327 -24.723,-2.72 -4.206,5.607 -18.936,22.47 -20.056,24.6 z"
+       id="path8076"
+       inkscape:connector-curvature="0"
+       style="fill:#ffcc88" />
+    <text
+       letter-spacing="-.603"
+       font-size="25"
+       font-weight="bold"
+       id="text8078"
+       x="5"
+       y="5"
+       style="font-weight:bold;font-size:25px;font-family:Lato;letter-spacing:-0.60299999;fill:#ffffff">
+      <tspan
+         y="25"
+         id="tspan8080">edyoucated</tspan>
+    </text>
+  </g>
+</svg>

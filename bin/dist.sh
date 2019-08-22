@@ -1,11 +1,36 @@
 #!/bin/bash
 
+TYPES=(
+    brand
+    icon
+    logo
+    logo-and-brand
+    logo-and-white-brand
+    logo-and-white-brand-on-color
+    logo-on-color-square
+    logo-white
+)
+
+SIZES=(
+    64
+    196
+    256
+    368
+    512
+    1024
+    2048
+)
+
+README_PREVIEW_SIZE=196
+
+
 SRC_DIR=src
 DIST_DIR=dist
 
+
 mkdir -p "$DIST_DIR"
 
-if [ -z "$DIST_DIR" ]; then
+if [[ -z "$DIST_DIR" ]]; then
   echo "Error: Empty DIST_DIR, exiting before attempting rm -rf"
   exit 99
 else
@@ -29,13 +54,11 @@ function createLogoVersions() {
   echo "OK"
 
   echo "  Generating PNG versions..."
-  resize 64
-  resize 196
-  resize 256
-  resize 368
-  resize 512
-  resize 1024
-  resize 2048
+
+  for size in "${SIZES[@]}"
+  do
+    resize "$size"
+  done
 
   echo ""
 }
@@ -65,15 +88,37 @@ function optimizePng() {
   du -h --max-depth=0 "$DIR"
 }
 
-createLogoVersions "brand"
-createLogoVersions "icon"
-createLogoVersions "logo"
-createLogoVersions "logo-and-brand"
-createLogoVersions "logo-and-white-brand"
-createLogoVersions "logo-and-white-brand-on-color"
-createLogoVersions "logo-on-color-square"
-createLogoVersions "logo-white"
+function generateReadme() {
+    target="$DIST_DIR/README.md"
+
+    rm -f "$target"
+    touch "$target"
+
+    echo "# Images" >> "$target"
+    echo "" >> "$target"
+
+    for type in "${TYPES[@]}"
+    do
+        echo "## [$type]($type)" >> "$target"
+        echo "" >> "$target"
+        echo "![$type]($type/$type-$README_PREVIEW_SIZE.png?raw=true \"$type\")" >> "$target"
+        echo "" >> "$target"
+        echo "[svg]($type/$type.svg)" >> "$target"
+
+        for size in "${SIZES[@]}"
+        do
+            echo "[png-$size]($type/$type-$size.png)" >> "$target"
+        done
+        echo "" >> "$target"
+    done
+}
+
+for type in "${TYPES[@]}"
+do
+    createLogoVersions "$type"
+done
 
 optimizePng "$DIST_DIR"
+generateReadme
 
 bin/own.sh "$PWD/$DIST_DIR"

@@ -2,7 +2,7 @@
 
 ## Download
 
-Check `dist` directory for various logo sizes.
+[Click this link](dist) for all available types and sizes.
 
 ## Development
 
@@ -12,8 +12,8 @@ Change `logo.svg`, e.g. using inkscape.
 
 Make sure `logo.min.svg` stays in sync.
 
-## Distribute
+### Distribute
 
     bin/dist.sh
 
-And commit these files when done.
+And then commit all created files.

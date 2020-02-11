@@ -4,8 +4,8 @@ TYPES=(
     brand
     icon
     logo
-    logo-and-brand
-    logo-and-white-brand
+    logo-and-brand-embedded
+    logo-and-white-brand-embedded
     logo-and-white-brand-on-color
     logo-on-color-square
     logo-white

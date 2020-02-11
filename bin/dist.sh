@@ -4,8 +4,8 @@ TYPES=(
     brand
     icon
     logo
-    logo-and-brand
-    logo-and-white-brand
+    logo-and-brand-embedded
+    logo-and-white-brand-embedded
     logo-and-white-brand-on-color
     logo-on-color-square
     logo-white
@@ -27,6 +27,26 @@ README_PREVIEW_SIZE=196
 SRC_DIR=src
 DIST_DIR=dist
 
+function detectOperatingSystem() {
+    unameOut="$(uname -s)"
+    case "${unameOut}" in
+        Linux*)     operatingSystem=Linux;;
+        Darwin*)    operatingSystem=Mac;;
+        *)          operatingSystem="UNKNOWN:${unameOut}"
+    esac
+    echo "Operating System: ${operatingSystem}"
+}
+
+
+function _du(){
+  DIR=$1
+  if [[ ${operatingSystem} == Mac ]]; then
+    echo "Mac optimized"
+    du -h -d=0 "$DIR"
+  else
+    du -h --max-depth=0 "$DIR"
+  fi
+}
 
 mkdir -p "$DIST_DIR"
 
@@ -75,7 +95,8 @@ function optimizePng() {
   DIR=$1
 
   echo "Size before optimization"
-  du -h --max-depth=0 "$DIR"
+
+  _du "$DIR"
 
   echo -n "Optimizing..."
   CURRENT="$PWD"
@@ -85,7 +106,7 @@ function optimizePng() {
   echo "OK"
 
   echo "Size after optimization"
-  du -h --max-depth=0 "$DIR"
+  _du "$DIR"
 }
 
 function generateReadme() {
@@ -112,6 +133,8 @@ function generateReadme() {
         echo "" >> "$target"
     done
 }
+
+detectOperatingSystem
 
 for type in "${TYPES[@]}"
 do

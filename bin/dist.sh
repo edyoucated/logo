@@ -85,9 +85,10 @@ function createLogoVersions() {
 
 function resize() {
   size=$1
-  density=$((72 * 2))
+  inputDensity=$((size * 4))
+  outputDensity=$((72 * 2))
   echo -n "    $size"x...
-  docker run --rm --volume "$PWD/$SRC_DIR/fonts/lato":"/usr/share/fonts/truetype/lato" --volume "$PWD/$SRC_SVG":"/app/input.svg" --volume "$PWD/$TARGET_DIR":"/output" --workdir "/app" jujhars13/docker-imagemagick sh -c "fc-cache -f; convert -background none -resize \"$size\"x -density \"$density\" -depth 8 input.svg /output/\"$LOGO_TYPE\"-\"$size\".png"
+  docker run --rm --volume "$PWD/$SRC_DIR/fonts/lato":"/usr/share/fonts/truetype/lato" --volume "$PWD/$SRC_SVG":"/app/input.svg" --volume "$PWD/$TARGET_DIR":"/output" --workdir "/app" jujhars13/docker-imagemagick sh -c "fc-cache -f; convert -background none -resize \"$size\"x -density \"$inputDensity\" -depth 8 input.svg  -density \"$outputDensity\" /output/\"$LOGO_TYPE\"-\"$size\".png"
   echo "OK"
 }
 
